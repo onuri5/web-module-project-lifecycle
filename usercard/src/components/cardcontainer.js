@@ -10,7 +10,7 @@ const StyledContainer = styled.div `
     background: #F2F2F2;
     text-align: center;
     color: #2b2d2f;
-
+    
     img {
         border-radius: 300px;
         border: solid #D3D3D3 1px;
