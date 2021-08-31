@@ -17,20 +17,23 @@ const StyledForm = styled.form `
     }
 `
 
-class SearchBar extends React.Component {
+const SearchBar = props => {
 
-    onSubmit = (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
+        props.handleSubmit();
     }
 
-    render() {
-        return(
-            <StyledForm onSubmit={this.onSubmit}>
-                <input type='text' size='20'/>
-                <button>Search</button>
-            </StyledForm>
-        )
+    const onChange = (e) => {
+       props.handleChange(e)
     }
+
+    return(
+        <StyledForm onSubmit={onSubmit}>
+            <input type='text' size='20' onChange={onChange}/>
+            <button>Search</button>
+        </StyledForm>
+    )
 }
 
 export default SearchBar;

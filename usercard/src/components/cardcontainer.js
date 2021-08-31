@@ -12,16 +12,14 @@ const StyledContainer = styled.div `
     color: #2b2d2f;
 `
 
-class Card extends React.Component {
+const CardContainer = props => {
     
-    render() {
-        return (
-        <StyledContainer>
-            <h1>GitHub Searcher</h1>
-            <SearchBar />
-        </StyledContainer>
-        )
-    }
+    return (
+    <StyledContainer>
+        <h1>GitHub Searcher</h1>
+        <SearchBar handleChange={props.handleChange} handleSubmit={props.handleSubmit}/>
+    </StyledContainer>
+    )
 }
 
-export default Card;
+export default CardContainer;
