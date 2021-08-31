@@ -14,8 +14,8 @@ const StyledHomepage = styled.div `
 
 class Homepage extends React.Component {
     state = {
-        data: [],
-        userName: 'example'
+        data: {},
+        userName: 'onuri5'
     }
 
     handleChange = (e) => {
@@ -54,7 +54,7 @@ class Homepage extends React.Component {
 
     render() {
         return(<StyledHomepage>
-            <CardContainer handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
+            <CardContainer handleChange={this.handleChange} handleSubmit={this.handleSubmit} user={this.state}/>
         </StyledHomepage>)
     }
 }
