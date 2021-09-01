@@ -36,7 +36,7 @@ const CardContainer = props => {
         <h1>GitHub Searcher</h1>
         <SearchBar handleChange={props.handleChange} handleSubmit={props.handleSubmit}/>
         <Card person={props.user.data}/>
-        <h1>Followers</h1>
+        <h1>Following</h1>
         <div className='bottom-border'>
             <div className='test'>{
                 props.followingArr.map((person, index) => {
@@ -45,7 +45,7 @@ const CardContainer = props => {
             }</div>
         </div>
 
-        <h1>Following</h1>
+        <h1>Followers</h1>
         <div className='bottom-border'>
             <div className='test'>{
                 props.followersArr.map((person, index) => {
