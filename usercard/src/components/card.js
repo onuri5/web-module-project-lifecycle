@@ -4,6 +4,7 @@ import React from 'react';
 const StyledCard = styled.div `  
 
     color: white;
+    border-bottom: dashed black 1px;
 
     .card {
         max-width: 60%;
@@ -15,7 +16,11 @@ const StyledCard = styled.div `
 
     span {
         display: inline-block;
-        margin: 100px 30px;
+        margin: 50px 30px;
+    }
+
+    a {
+        color: white;
     }
 `
 
@@ -27,8 +32,6 @@ const Positioner = styled.div `
 
 const Card = (props) => {
 
-    console.log(props)
-
     return(
         <StyledCard>
             <div className="card">
@@ -37,6 +40,7 @@ const Card = (props) => {
                 <div>
                     <h1>Name:  {props.person.name === null ? <i>John Doe</i> : <i>{props.person.name}</i>}</h1>
                     <h2>Username:  <i>{props.person.login}</i></h2>
+                    <h3><a href={props.person.html_url} target='_blank' rel="noreferrer">GitHub</a></h3>
                 </div>
             </Positioner>
             <span>Followers: {props.person.followers}</span>

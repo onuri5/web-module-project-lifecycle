@@ -9,30 +9,30 @@ const StyledHomepage = styled.div `
     align-items: center;
     background: #2b2d2f;
     width: 100%auto;
-    height: 100vh;
+    min-height: 100vh;
 `
 
 class Homepage extends React.Component {
     state = {
         data: {},
-        userName: 'onuri5'
+        userName: 'onuri5',
+        followersArr: [],
+        followingArr: []
     }
 
     handleChange = (e) => {
         this.setState({
-            ...this.state,
             userName: e.target.value
         });
     }
 
-    handleSubmit = (e) => {
+    handleSubmit = () => {
         axios.get(`https://api.github.com/users/${this.state.userName}`)
             .then(res => {
               this.setState({
                 ...this.state,
-                data: res.data
+                data: res.data,
               });
-              console.log(this.state)
             })
             .catch(err => {
                 console.log(err);
@@ -52,10 +52,42 @@ class Homepage extends React.Component {
             })
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.data.login !== prevState.data.login) {
+            // console.log('old state: ', prevState);
+            // console.log('new state ', this.state)
+            axios.get(this.state.data.followers_url) 
+                .then(res => {
+                    this.setState({
+                        followersArr: res.data
+                    })
+                })
+                .catch(err => {
+                    console.error(err);
+                })
+            
+            axios.get(`https://api.github.com/users/${this.state.userName}/following`) 
+            .then(res => {
+                this.setState({
+                    followingArr: res.data
+                })
+            })
+            .catch(err => {
+                console.error(err);
+            })
+        }
+    }
+
     render() {
         return(<StyledHomepage>
-            <CardContainer handleChange={this.handleChange} handleSubmit={this.handleSubmit} user={this.state}/>
-        </StyledHomepage>)
+                <CardContainer 
+                    handleChange={this.handleChange} 
+                    handleSubmit={this.handleSubmit} 
+                    user={this.state} 
+                    followersArr={this.state.followersArr} 
+                    followingArr={this.state.followingArr}
+                />
+            </StyledHomepage>)
     }
 }
 
